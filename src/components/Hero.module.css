@@ -1,0 +1,143 @@
+
+.hero {
+  padding: 80px 0;
+  background-image: url('/hero-backgroung.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 500px;
+}
+
+.hero-title {
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.highlight {
+  color: var(--primary-color);
+}
+
+.hero-description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--secondary-text-color);
+  margin-bottom: 32px;
+}
+
+.cta-button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.trustpilot {
+  display: flex;
+  flex-direction: column;
+}
+
+.trustpilot-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.star-icon {
+  color: #00B67A;
+  font-size: 20px;
+}
+
+.trustpilot-text {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.trustpilot-rating {
+  font-size: 14px;
+  color: var(--secondary-text-color);
+}
+
+.rating-score {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.hero-image-container {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-main-image {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 40px;
+  object-fit: cover;
+}
+
+.floating-icons {
+  position: absolute;
+  bottom: 20px;
+  right: -20px;
+  display: flex;
+  gap: 15px;
+}
+
+.icon-badge {
+  background-color: white;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-badge img {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 992px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .hero-content {
+    max-width: 100%;
+  }
+  
+  .hero-title {
+    font-size: 40px;
+  }
+  
+  .hero-image-container {
+    justify-content: center;
+  }
+  
+  .floating-icons {
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
