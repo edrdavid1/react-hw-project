@@ -1,10 +1,9 @@
-import List from './components/List';
+import HomePage from './components/HomePage';
 
 function App() {
   return (
-    <div>
-      <h1>React Homework 1</h1>
-      <List />
+    <div className="App">
+      <HomePage />
     </div>
   );
 }
