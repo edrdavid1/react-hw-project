@@ -29,6 +29,7 @@
   line-height: 20px;
   letter-spacing: 0%;
   color: var(--text-color);
+  cursor: pointer;
 }
 
 .nav-link:hover, .nav-link.active {

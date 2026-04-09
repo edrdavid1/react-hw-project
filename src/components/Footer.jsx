@@ -21,25 +21,25 @@ const Footer = () => {
             <div className={styles['footer-column']}>
               <h4 className={styles['footer-heading']}>COMPANY</h4>
               <ul className={styles['footer-list']}>
-                <li><a href="/">Home</a></li>
-                <li><a href="/order">Order</a></li>
-                <li><a href="/faq">FAQ</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><span>Home</span></li>
+                <li><span>Order</span></li>
+                <li><span>FAQ</span></li>
+                <li><span>Contact</span></li>
               </ul>
             </div>
             <div className={styles['footer-column']}>
               <h4 className={styles['footer-heading']}>TEMPLATE</h4>
               <ul className={styles['footer-list']}>
-                <li><a href="/styleguide">Style Guide</a></li>
-                <li><a href="/changelog">Changelog</a></li>
-                <li><a href="/licence">Licence</a></li>
-                <li><a href="/webflow">Webflow University</a></li>
+                <li><a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">Style Guide</a></li>
+                <li><a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">Changelog</a></li>
+                <li><a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">Licence</a></li>
+                <li><a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">Webflow University</a></li>
               </ul>
             </div>
             <div className={styles['footer-column']}>
               <h4 className={styles['footer-heading']}>FLOWBASE</h4>
               <ul className={styles['footer-list']}>
-                <li><a href="/more">More Cloneables</a></li>
+                <li><span>More Cloneables</span></li>
                 <li>
                   <div 
                     className={styles['phone-container']}
