@@ -25,7 +25,7 @@ const Header = () => {
               <span className={styles['nav-link']}>Company</span>
             </li>
             <li className={styles['nav-item']}>
-              <span className={styles['nav-link']}>Login</span>
+              <Link to="/login" className={`${styles['nav-link']} ${location.pathname === '/login' ? styles.active : ''}`}>Login</Link>
             </li>
           </ul>
         </nav>

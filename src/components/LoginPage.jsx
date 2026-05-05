@@ -37,13 +37,14 @@ const LoginPage = () => {
   return (
     <div className={styles.page}>
       <Header />
+      <div className={styles.hero}>
+        <div className="container">
+          <h1 className={styles['hero-title']}>Welcome Back</h1>
+          <p className={styles['hero-subtitle']}>Sign in to your account or create a new one</p>
+        </div>
+      </div>
       <main className={styles.main}>
         <div className={styles.card}>
-          <h1 className={styles.title}>{isRegister ? 'Create Account' : 'Welcome Back'}</h1>
-          <p className={styles.subtitle}>
-            {isRegister ? 'Sign up to place orders' : 'Sign in to your account'}
-          </p>
-
           {error && <p className={styles.error}>{error}</p>}
 
           <form onSubmit={handleSubmit} className={styles.form}>
