@@ -7,17 +7,26 @@ import styles from './MenuPage.module.css';
 
 const ITEMS_PER_PAGE = 6;
 
+const CATEGORIES = [
+  { label: 'Dessert', apiCategory: 'Dessert' },
+  { label: 'Dinner', apiCategory: 'Beef' },
+  { label: 'Breakfast', apiCategory: 'Breakfast' },
+];
+
 const MenuPage = () => {
   const [meals, setMeals] = useState([]);
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState(CATEGORIES[0]);
   const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchMeals = async () => {
+      setLoading(true);
+      setVisibleCount(ITEMS_PER_PAGE);
       try {
         const response = await fetch(
-          'https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef'
+          `https://www.themealdb.com/api/json/v1/1/filter.php?c=${activeCategory.apiCategory}`
         );
         const data = await response.json();
         setMeals(data.meals || []);
@@ -29,10 +38,16 @@ const MenuPage = () => {
     };
 
     fetchMeals();
-  }, []);
+  }, [activeCategory]);
 
   const handleSeeMore = () => {
     setVisibleCount(prev => prev + ITEMS_PER_PAGE);
+  };
+
+  const handleCategoryClick = (category) => {
+    if (category.label !== activeCategory.label) {
+      setActiveCategory(category);
+    }
   };
 
   const visibleMeals = meals.slice(0, visibleCount);
@@ -56,15 +71,15 @@ const MenuPage = () => {
         <div className={styles.contentWrapper}>
           <div className="container">
             <div className={styles.categories}>
-              <button className={`${styles['category-btn']} ${styles.active}`} disabled>
-                Desert
-              </button>
-              <button className={styles['category-btn']} disabled>
-                Dinner
-              </button>
-              <button className={styles['category-btn']} disabled>
-                Breakfast
-              </button>
+              {CATEGORIES.map(category => (
+                <button
+                  key={category.label}
+                  className={`${styles['category-btn']}${activeCategory.label === category.label ? ` ${styles.active}` : ''}`}
+                  onClick={() => handleCategoryClick(category)}
+                >
+                  {category.label}
+                </button>
+              ))}
             </div>
 
             {loading ? (

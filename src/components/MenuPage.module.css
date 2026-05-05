@@ -42,7 +42,12 @@
   background-color: transparent;
   border: 1px solid var(--border-color);
   color: var(--text-color);
-  cursor: default;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.category-btn:hover:not(.active) {
+  background-color: var(--border-color);
 }
 
 .category-btn.active {
