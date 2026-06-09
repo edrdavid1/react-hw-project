@@ -1,31 +1,27 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from './Header';
 import Footer from './Footer';
+import { clearAuthError, loginUser } from '../store/slices/authSlice';
 import styles from './LoginPage.module.css';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const { login } = useAuth();
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setLoading(true);
+    dispatch(clearAuthError());
 
     try {
-      await login(email, password);
+      await dispatch(loginUser({ email, password })).unwrap();
       navigate('/orders');
     } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
+      void err;
     }
   };
 
@@ -76,7 +72,11 @@ const LoginPage = () => {
               <button
                 type="button"
                 className={styles.cancel}
-                onClick={() => { setEmail(''); setPassword(''); setError(''); }}
+                onClick={() => {
+                  setEmail('');
+                  setPassword('');
+                  dispatch(clearAuthError());
+                }}
               >
                 Cancel
               </button>

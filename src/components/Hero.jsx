@@ -1,5 +1,6 @@
 
 import styles from './Hero.module.css';
+import { Link } from 'react-router-dom';
 
 const RATING = 4.8;
 const MAX_STARS = 5;
@@ -31,7 +32,7 @@ const Hero = () => {
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500.
           </p>
-          <button className={styles['cta-button']} disabled>Place an Order</button>
+          <Link to="/orders" className={styles['cta-button']}>Place an Order</Link>
           <div className={styles.trustpilot}>
             <div className={styles['trustpilot-header']}>
               <StarRating rating={RATING} />

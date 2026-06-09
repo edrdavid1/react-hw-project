@@ -1,45 +1,32 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from './Header';
 import Footer from './Footer';
 import MenuItem from './MenuItem';
-import { useCart } from '../context/CartContext';
-import useFetch from '../hooks/useFetch';
+import { addToCart } from '../store/slices/cartSlice';
+import {
+  CATEGORIES,
+  fetchMealsByCategory,
+  increaseVisibleCount,
+  setActiveCategory,
+} from '../store/slices/menuSlice';
 import styles from './MenuPage.module.css';
 
-const ITEMS_PER_PAGE = 6;
-
-const CATEGORIES = [
-  { label: 'Dessert', apiCategory: 'Dessert' },
-  { label: 'Dinner', apiCategory: 'Beef' },
-  { label: 'Breakfast', apiCategory: 'Breakfast' },
-];
-
 const MenuPage = () => {
-  const [meals, setMeals] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
-  const [activeCategory, setActiveCategory] = useState(CATEGORIES[0]);
-  const { addToCart } = useCart();
-  const { fetchData, loading } = useFetch();
+  const dispatch = useDispatch();
+  const { meals, visibleCount, activeCategory, loading } = useSelector((state) => state.menu);
 
   useEffect(() => {
-    const loadMeals = async () => {
-      setVisibleCount(ITEMS_PER_PAGE);
-      const { data } = await fetchData(
-        `https://www.themealdb.com/api/json/v1/1/filter.php?c=${activeCategory.apiCategory}`
-      );
-      setMeals(data?.meals || []);
-    };
-
-    loadMeals();
-  }, [activeCategory]);
+    dispatch(fetchMealsByCategory(activeCategory.apiCategory));
+  }, [dispatch, activeCategory]);
 
   const handleSeeMore = () => {
-    setVisibleCount(prev => prev + ITEMS_PER_PAGE);
+    dispatch(increaseVisibleCount());
   };
 
   const handleCategoryClick = (category) => {
     if (category.label !== activeCategory.label) {
-      setActiveCategory(category);
+      dispatch(setActiveCategory(category));
     }
   };
 
@@ -81,7 +68,13 @@ const MenuPage = () => {
               <>
                 <div className={styles.grid}>
                   {visibleMeals.map(meal => (
-                    <MenuItem key={meal.idMeal} meal={meal} onAddToCart={addToCart} />
+                    <MenuItem
+                      key={meal.idMeal}
+                      meal={meal}
+                      onAddToCart={(quantity, selectedMeal) => {
+                        dispatch(addToCart({ meal: selectedMeal, quantity }));
+                      }}
+                    />
                   ))}
                 </div>
 

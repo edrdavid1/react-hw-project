@@ -11,7 +11,7 @@ const MenuItem = ({ meal, onAddToCart }) => {
   const price = getPrice(meal.idMeal);
 
   const handleAdd = () => {
-    onAddToCart(quantity);
+    onAddToCart(quantity, meal);
   };
 
   return (
