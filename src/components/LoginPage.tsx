@@ -1,27 +1,27 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import Header from './Header';
 import Footer from './Footer';
 import { clearAuthError, loginUser } from '../store/slices/authSlice';
 import styles from './LoginPage.module.css';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const { loading, error } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(clearAuthError());
 
     try {
       await dispatch(loginUser({ email, password })).unwrap();
       navigate('/orders');
-    } catch (err) {
-      void err;
+    } catch {
+      return;
     }
   };
 

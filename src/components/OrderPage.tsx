@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import Header from './Header';
 import Footer from './Footer';
 import { logoutUser } from '../store/slices/authSlice';
 import styles from './OrderPage.module.css';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
 
 const OrderPage = () => {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
-  const { cartCount, items } = useSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user);
+  const { cartCount, items } = useAppSelector((state) => state.cart);
   const navigate = useNavigate();
 
   const handleLogout = async () => {

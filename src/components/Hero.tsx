@@ -1,11 +1,14 @@
-
-import styles from './Hero.module.css';
 import { Link } from 'react-router-dom';
+import styles from './Hero.module.css';
 
 const RATING = 4.8;
 const MAX_STARS = 5;
 
-const StarRating = ({ rating }) => {
+interface StarRatingProps {
+  rating: number;
+}
+
+const StarRating = ({ rating }: StarRatingProps) => {
   return (
     <div className={styles.stars}>
       {Array.from({ length: MAX_STARS }, (_, i) => (
@@ -29,7 +32,7 @@ const Hero = () => {
             Beautiful food & takeaway, <span className={styles.highlight}>delivered</span> to your door.
           </h1>
           <p className={styles['hero-description']}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500.
           </p>
           <Link to="/orders" className={styles['cta-button']}>Place an Order</Link>
@@ -44,10 +47,10 @@ const Hero = () => {
           </div>
         </div>
         <div className={styles['hero-image-container']}>
-          <img 
-            src="/IMAGE.png" 
-            alt="Delicious food" 
-            className={styles['hero-main-image']} 
+          <img
+            src="/IMAGE.png"
+            alt="Delicious food"
+            className={styles['hero-main-image']}
           />
           <div className={styles['floating-icons']}>
             <div className={`${styles['icon-badge']} ${styles.google}`}>

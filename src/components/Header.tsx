@@ -1,11 +1,10 @@
-
 import { Link, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import styles from './Header.module.css';
+import { useAppSelector } from '../store/hooks';
 
 const Header = () => {
-  const cartCount = useSelector((state) => state.cart.cartCount);
-  const user = useSelector((state) => state.auth.user);
+  const cartCount = useAppSelector((state) => state.cart.cartCount);
+  const user = useAppSelector((state) => state.auth.user);
   const location = useLocation();
 
   return (

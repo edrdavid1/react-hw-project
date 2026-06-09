@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import styles from './Footer.module.css';
 
@@ -41,7 +40,7 @@ const Footer = () => {
               <ul className={styles['footer-list']}>
                 <li><span>More Cloneables</span></li>
                 <li>
-                  <div 
+                  <div
                     className={styles['phone-container']}
                     onMouseEnter={() => setShowTooltip(true)}
                     onMouseLeave={() => setShowTooltip(false)}

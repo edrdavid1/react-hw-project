@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import Header from './Header';
 import Footer from './Footer';
 import MenuItem from './MenuItem';
@@ -11,10 +10,12 @@ import {
   setActiveCategory,
 } from '../store/slices/menuSlice';
 import styles from './MenuPage.module.css';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import type { Category, Meal } from '../store/slices/menuSlice';
 
 const MenuPage = () => {
-  const dispatch = useDispatch();
-  const { meals, visibleCount, activeCategory, loading } = useSelector((state) => state.menu);
+  const dispatch = useAppDispatch();
+  const { meals, visibleCount, activeCategory, loading } = useAppSelector((state) => state.menu);
 
   useEffect(() => {
     dispatch(fetchMealsByCategory(activeCategory.apiCategory));
@@ -24,7 +25,7 @@ const MenuPage = () => {
     dispatch(increaseVisibleCount());
   };
 
-  const handleCategoryClick = (category) => {
+  const handleCategoryClick = (category: Category) => {
     if (category.label !== activeCategory.label) {
       dispatch(setActiveCategory(category));
     }
@@ -51,7 +52,7 @@ const MenuPage = () => {
         <div className={styles.contentWrapper}>
           <div className="container">
             <div className={styles.categories}>
-              {CATEGORIES.map(category => (
+              {CATEGORIES.map((category) => (
                 <button
                   key={category.label}
                   className={`${styles['category-btn']}${activeCategory.label === category.label ? ` ${styles.active}` : ''}`}
@@ -67,7 +68,7 @@ const MenuPage = () => {
             ) : (
               <>
                 <div className={styles.grid}>
-                  {visibleMeals.map(meal => (
+                  {visibleMeals.map((meal: Meal) => (
                     <MenuItem
                       key={meal.idMeal}
                       meal={meal}

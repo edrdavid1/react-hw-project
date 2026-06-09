@@ -1,12 +1,18 @@
 import { useState } from 'react';
 import styles from './MenuItem.module.css';
+import type { Meal } from '../store/slices/menuSlice';
 
-const getPrice = (idMeal) => {
-  const hash = parseInt(idMeal.slice(-3));
+interface MenuItemProps {
+  meal: Meal;
+  onAddToCart: (quantity: number, selectedMeal: Meal) => void;
+}
+
+const getPrice = (idMeal: string): string => {
+  const hash = Number.parseInt(idMeal.slice(-3), 10);
   return ((hash % 1200) / 100 + 5).toFixed(2);
 };
 
-const MenuItem = ({ meal, onAddToCart }) => {
+const MenuItem = ({ meal, onAddToCart }: MenuItemProps) => {
   const [quantity, setQuantity] = useState(1);
   const price = getPrice(meal.idMeal);
 
@@ -30,7 +36,7 @@ const MenuItem = ({ meal, onAddToCart }) => {
             type="number"
             min="1"
             value={quantity}
-            onChange={e => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+            onChange={(e) => setQuantity(Math.max(1, Number.parseInt(e.target.value, 10) || 1))}
             className={styles.quantity}
           />
           <button className={styles['add-btn']} onClick={handleAdd}>

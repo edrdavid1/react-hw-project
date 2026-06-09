@@ -1,6 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import type { Meal } from './menuSlice';
 
-const initialState = {
+export interface CartItem extends Meal {
+  quantity: number;
+}
+
+interface CartState {
+  cartCount: number;
+  items: CartItem[];
+}
+
+interface AddToCartPayload {
+  meal?: Meal;
+  quantity?: number;
+}
+
+const initialState: CartState = {
   cartCount: 0,
   items: [],
 };
@@ -9,8 +24,8 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart(state, action) {
-      const { meal, quantity = 1 } = action.payload || {};
+    addToCart(state, action: PayloadAction<AddToCartPayload | undefined>) {
+      const { meal, quantity = 1 } = action.payload ?? {};
       state.cartCount += quantity;
 
       if (!meal) {
@@ -36,4 +51,5 @@ const cartSlice = createSlice({
 });
 
 export const { addToCart, clearCart } = cartSlice.actions;
+
 export default cartSlice.reducer;
