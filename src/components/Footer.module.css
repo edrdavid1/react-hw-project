@@ -48,7 +48,8 @@
   gap: 16px;
 }
 
-.footer-list a {
+.footer-list a,
+.footer-list span {
   font-size: 15px;
   color: var(--secondary-text-color);
 }

@@ -1,19 +1,32 @@
 
+import { Link, useLocation } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import styles from './Header.module.css';
 
 const Header = () => {
+  const { cartCount } = useCart();
+  const location = useLocation();
+
   return (
     <header className={styles.header}>
       <div className={`container ${styles['header-container']}`}>
-        <a href="/" className={styles.logo}>
+        <Link to="/" className={styles.logo}>
           <img src="/Logo.svg" alt="Logo" />
-        </a>
+        </Link>
         <nav className={styles.nav}>
           <ul className={styles['nav-list']}>
-            <li className={styles['nav-item']}><a href="/" className={`${styles['nav-link']} ${styles.active}`}>Home</a></li>
-            <li className={styles['nav-item']}><a href="/menu" className={styles['nav-link']}>Menu</a></li>
-            <li className={styles['nav-item']}><a href="/company" className={styles['nav-link']}>Company</a></li>
-            <li className={styles['nav-item']}><a href="/login" className={styles['nav-link']}>Login</a></li>
+            <li className={styles['nav-item']}>
+              <Link to="/" className={`${styles['nav-link']} ${location.pathname === '/' ? styles.active : ''}`}>Home</Link>
+            </li>
+            <li className={styles['nav-item']}>
+              <Link to="/menu" className={`${styles['nav-link']} ${location.pathname === '/menu' ? styles.active : ''}`}>Menu</Link>
+            </li>
+            <li className={styles['nav-item']}>
+              <span className={styles['nav-link']}>Company</span>
+            </li>
+            <li className={styles['nav-item']}>
+              <span className={styles['nav-link']}>Login</span>
+            </li>
           </ul>
         </nav>
         <button className={styles['cart-button']}>
@@ -22,7 +35,7 @@ const Header = () => {
             <path d="M3 6H21" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-          <span className={styles['cart-badge']}>0</span>
+          <span className={styles['cart-badge']}>{cartCount}</span>
         </button>
       </div>
     </header>
