@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import MenuItem from './MenuItem';
 import { useCart } from '../context/CartContext';
+import useFetch from '../hooks/useFetch';
 import styles from './MenuPage.module.css';
 
 const ITEMS_PER_PAGE = 6;
@@ -16,28 +17,20 @@ const CATEGORIES = [
 const MenuPage = () => {
   const [meals, setMeals] = useState([]);
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
-  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState(CATEGORIES[0]);
   const { addToCart } = useCart();
+  const { fetchData, loading } = useFetch();
 
   useEffect(() => {
-    const fetchMeals = async () => {
-      setLoading(true);
+    const loadMeals = async () => {
       setVisibleCount(ITEMS_PER_PAGE);
-      try {
-        const response = await fetch(
-          `https://www.themealdb.com/api/json/v1/1/filter.php?c=${activeCategory.apiCategory}`
-        );
-        const data = await response.json();
-        setMeals(data.meals || []);
-      } catch (error) {
-        console.error('Failed to fetch meals:', error);
-      } finally {
-        setLoading(false);
-      }
+      const { data } = await fetchData(
+        `https://www.themealdb.com/api/json/v1/1/filter.php?c=${activeCategory.apiCategory}`
+      );
+      setMeals(data?.meals || []);
     };
 
-    fetchMeals();
+    loadMeals();
   }, [activeCategory]);
 
   const handleSeeMore = () => {
