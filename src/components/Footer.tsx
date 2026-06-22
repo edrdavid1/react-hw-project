@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './Footer.module.css';
+import ThemedImage from './ThemedImage';
 
 const Footer = () => {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -10,7 +11,7 @@ const Footer = () => {
         <div className={styles['footer-top']}>
           <div className={styles['footer-brand']}>
             <a href="/" className={`${styles.logo} ${styles['footer-logo']}`}>
-              <img src="/logo.svg" alt="Logo" />
+              <ThemedImage name="Logo.svg" alt="Logo" className={styles['footer-logo']} />
             </a>
             <p className={styles['footer-description']}>
               Takeaway & Delivery template for small - medium businesses.

@@ -5,7 +5,7 @@
 }
 
 .hero {
-  background-image: url('/menu-background.png');
+  background-image: var(--menu-background);
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;

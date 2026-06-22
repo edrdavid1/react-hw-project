@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 const STORAGE_KEY = 'fetchLogs';
 
@@ -18,7 +18,7 @@ const useFetch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchData = async <T>(url: string, options: RequestInit = {}): Promise<FetchResult<T>> => {
+  const fetchData = useCallback(async <T>(url: string, options: RequestInit = {}): Promise<FetchResult<T>> => {
     setLoading(true);
     setError(null);
 
@@ -43,7 +43,7 @@ const useFetch = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   return { fetchData, loading, error };
 };
