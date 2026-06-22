@@ -10,6 +10,7 @@ import {
   setActiveCategory,
 } from '../store/slices/menuSlice';
 import styles from './MenuPage.module.css';
+import clsx from 'clsx';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import type { Category, Meal } from '../store/slices/menuSlice';
 
@@ -55,7 +56,7 @@ const MenuPage = () => {
               {CATEGORIES.map((category) => (
                 <button
                   key={category.label}
-                  className={`${styles['category-btn']}${activeCategory.label === category.label ? ` ${styles.active}` : ''}`}
+                  className={clsx(styles['category-btn'], { [styles.active]: activeCategory.label === category.label })}
                   onClick={() => handleCategoryClick(category)}
                 >
                   {category.label}

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './Hero.module.css';
+import clsx from 'clsx';
 
 const RATING = 4.8;
 const MAX_STARS = 5;
@@ -14,7 +15,7 @@ const StarRating = ({ rating }: StarRatingProps) => {
       {Array.from({ length: MAX_STARS }, (_, i) => (
         <span
           key={i}
-          className={i < Math.round(rating) ? styles['star-filled'] : styles['star-empty']}
+          className={clsx({ [styles['star-filled']]: i < Math.round(rating), [styles['star-empty']]: i >= Math.round(rating) })}
         >
           ★
         </span>
@@ -26,7 +27,7 @@ const StarRating = ({ rating }: StarRatingProps) => {
 const Hero = () => {
   return (
     <section className={styles.hero}>
-      <div className={`container ${styles['hero-container']}`}>
+      <div className={clsx('container', styles['hero-container'])}>
         <div className={styles['hero-content']}>
           <h1 className={styles['hero-title']}>
             Beautiful food & takeaway, <span className={styles.highlight}>delivered</span> to your door.
@@ -53,10 +54,10 @@ const Hero = () => {
             className={styles['hero-main-image']}
           />
           <div className={styles['floating-icons']}>
-            <div className={`${styles['icon-badge']} ${styles.google}`}>
+            <div className={clsx(styles['icon-badge'], styles.google)}>
               <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google" />
             </div>
-            <div className={`${styles['icon-badge']} ${styles['phone-app']}`}>
+            <div className={clsx(styles['icon-badge'], styles['phone-app'])}>
               <img src="https://img.icons8.com/color/48/000000/iphone.png" alt="App" />
             </div>
           </div>
