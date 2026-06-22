@@ -1,10 +1,10 @@
-
 import { Link, useLocation } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
 import styles from './Header.module.css';
+import { useAppSelector } from '../store/hooks';
 
 const Header = () => {
-  const { cartCount } = useCart();
+  const cartCount = useAppSelector((state) => state.cart.cartCount);
+  const user = useAppSelector((state) => state.auth.user);
   const location = useLocation();
 
   return (
@@ -25,7 +25,11 @@ const Header = () => {
               <span className={styles['nav-link']}>Company</span>
             </li>
             <li className={styles['nav-item']}>
-              <span className={styles['nav-link']}>Login</span>
+              {user ? (
+                <Link to="/orders" className={`${styles['nav-link']} ${location.pathname === '/orders' ? styles.active : ''}`}>Orders</Link>
+              ) : (
+                <Link to="/login" className={`${styles['nav-link']} ${location.pathname === '/login' ? styles.active : ''}`}>Login</Link>
+              )}
             </li>
           </ul>
         </nav>
