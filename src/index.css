@@ -11,6 +11,28 @@
   --bg-color: #FFFFFF;
   --border-color: #E5E7EB;
   --background-color: #F5FBFC;
+  --hero-background: url('/images/light/hero-backgroung.png');
+  --footer-background: url('/images/light/footer-backgroung.png');
+  --menu-background: url('/images/light/menu-background.png');
+}
+
+/* Dark theme variables applied via data-theme attribute */
+:root[data-theme='dark'], [data-theme='dark'] {
+  --primary-color: #35B8BE;
+  --text-color: #F8FAFC;
+  --secondary-text-color: #9AA6B2;
+  --bg-color: #0B1220; /* dark background */
+  --border-color: #1F2937;
+  --background-color: #071022;
+}
+
+:root[data-theme='light'], [data-theme='light'] {
+  --primary-color: #35B8BE;
+  --text-color: #08090A;
+  --secondary-text-color: #546285;
+  --bg-color: #FFFFFF;
+  --border-color: #E5E7EB;
+  --background-color: #F5FBFC;
 }
 
 body {
@@ -19,6 +41,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-color);
   background-color: var(--bg-color);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .container {

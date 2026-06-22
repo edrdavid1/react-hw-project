@@ -1,45 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import MenuItem from './MenuItem';
-import { useCart } from '../context/CartContext';
-import useFetch from '../hooks/useFetch';
+import { addToCart } from '../store/slices/cartSlice';
+import {
+  CATEGORIES,
+  fetchMealsByCategory,
+  increaseVisibleCount,
+  setActiveCategory,
+} from '../store/slices/menuSlice';
 import styles from './MenuPage.module.css';
-
-const ITEMS_PER_PAGE = 6;
-
-const CATEGORIES = [
-  { label: 'Dessert', apiCategory: 'Dessert' },
-  { label: 'Dinner', apiCategory: 'Beef' },
-  { label: 'Breakfast', apiCategory: 'Breakfast' },
-];
+import clsx from 'clsx';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import type { Category, Meal } from '../store/slices/menuSlice';
 
 const MenuPage = () => {
-  const [meals, setMeals] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
-  const [activeCategory, setActiveCategory] = useState(CATEGORIES[0]);
-  const { addToCart } = useCart();
-  const { fetchData, loading } = useFetch();
+  const dispatch = useAppDispatch();
+  const { meals, visibleCount, activeCategory, loading } = useAppSelector((state) => state.menu);
 
   useEffect(() => {
-    const loadMeals = async () => {
-      setVisibleCount(ITEMS_PER_PAGE);
-      const { data } = await fetchData(
-        `https://www.themealdb.com/api/json/v1/1/filter.php?c=${activeCategory.apiCategory}`
-      );
-      setMeals(data?.meals || []);
-    };
-
-    loadMeals();
-  }, [activeCategory]);
+    dispatch(fetchMealsByCategory(activeCategory.apiCategory));
+  }, [dispatch, activeCategory]);
 
   const handleSeeMore = () => {
-    setVisibleCount(prev => prev + ITEMS_PER_PAGE);
+    dispatch(increaseVisibleCount());
   };
 
-  const handleCategoryClick = (category) => {
+  const handleCategoryClick = (category: Category) => {
     if (category.label !== activeCategory.label) {
-      setActiveCategory(category);
+      dispatch(setActiveCategory(category));
     }
   };
 
@@ -64,10 +53,10 @@ const MenuPage = () => {
         <div className={styles.contentWrapper}>
           <div className="container">
             <div className={styles.categories}>
-              {CATEGORIES.map(category => (
+              {CATEGORIES.map((category) => (
                 <button
                   key={category.label}
-                  className={`${styles['category-btn']}${activeCategory.label === category.label ? ` ${styles.active}` : ''}`}
+                  className={clsx(styles['category-btn'], { [styles.active]: activeCategory.label === category.label })}
                   onClick={() => handleCategoryClick(category)}
                 >
                   {category.label}
@@ -80,8 +69,14 @@ const MenuPage = () => {
             ) : (
               <>
                 <div className={styles.grid}>
-                  {visibleMeals.map(meal => (
-                    <MenuItem key={meal.idMeal} meal={meal} onAddToCart={addToCart} />
+                  {visibleMeals.map((meal: Meal) => (
+                    <MenuItem
+                      key={meal.idMeal}
+                      meal={meal}
+                      onAddToCart={(quantity, selectedMeal) => {
+                        dispatch(addToCart({ meal: selectedMeal, quantity }));
+                      }}
+                    />
                   ))}
                 </div>
 
