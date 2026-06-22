@@ -1,31 +1,36 @@
-
 import { Link, useLocation } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
 import styles from './Header.module.css';
+import clsx from 'clsx';
+import { useAppSelector } from '../store/hooks';
 
 const Header = () => {
-  const { cartCount } = useCart();
+  const cartCount = useAppSelector((state) => state.cart.cartCount);
+  const user = useAppSelector((state) => state.auth.user);
   const location = useLocation();
 
   return (
     <header className={styles.header}>
-      <div className={`container ${styles['header-container']}`}>
+      <div className={clsx('container', styles['header-container'])}>
         <Link to="/" className={styles.logo}>
           <img src="/Logo.svg" alt="Logo" />
         </Link>
         <nav className={styles.nav}>
           <ul className={styles['nav-list']}>
             <li className={styles['nav-item']}>
-              <Link to="/" className={`${styles['nav-link']} ${location.pathname === '/' ? styles.active : ''}`}>Home</Link>
+              <Link to="/" className={clsx(styles['nav-link'], { [styles.active]: location.pathname === '/' })}>Home</Link>
             </li>
             <li className={styles['nav-item']}>
-              <Link to="/menu" className={`${styles['nav-link']} ${location.pathname === '/menu' ? styles.active : ''}`}>Menu</Link>
+              <Link to="/menu" className={clsx(styles['nav-link'], { [styles.active]: location.pathname === '/menu' })}>Menu</Link>
             </li>
             <li className={styles['nav-item']}>
               <span className={styles['nav-link']}>Company</span>
             </li>
             <li className={styles['nav-item']}>
-              <span className={styles['nav-link']}>Login</span>
+              {user ? (
+                <Link to="/orders" className={clsx(styles['nav-link'], { [styles.active]: location.pathname === '/orders' })}>Orders</Link>
+              ) : (
+                <Link to="/login" className={clsx(styles['nav-link'], { [styles.active]: location.pathname === '/login' })}>Login</Link>
+              )}
             </li>
           </ul>
         </nav>
