@@ -29,7 +29,7 @@ const RegisterPage = () => {
 
     try {
       await dispatch(registerUser({ email, password })).unwrap();
-      navigate('/orders');
+      navigate('/cart');
     } catch {
       return;
     }

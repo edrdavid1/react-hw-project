@@ -21,7 +21,7 @@ const LoginPage = () => {
 
     try {
       await dispatch(loginUser({ email, password })).unwrap();
-      navigate('/orders');
+      navigate('/cart');
     } catch {
       return;
     }

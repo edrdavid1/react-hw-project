@@ -6,7 +6,7 @@
       "menu": "Menu",
       "company": "Company",
       "login": "Login",
-      "orders": "Orders"
+      "cart": "Cart"
     }
   },
   "login": {
@@ -61,12 +61,17 @@
       "passwordMismatch": "Passwords do not match."
     }
   },
-  "orders": {
-    "title": "My Orders",
+  "cart": {
+    "title": "Cart",
     "loggedInAs": "Logged in as",
     "itemsInCart": "Items in cart:",
     "emptyCart": "Your cart is empty. Add dishes from menu to create an order.",
     "quantity": "Quantity: {{count}}",
+    "price": "Price: $ {{price}} USD",
+    "total": "Total: $ {{total}} USD",
+    "delete": "Delete",
+    "checkout": "Checkout",
+    "checkoutAlert": "Checkout is currently unavailable. Thank you for your interest!",
     "logout": "Log Out"
   },
   "footer": {

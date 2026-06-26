@@ -47,9 +47,17 @@ const cartSlice = createSlice({
       state.cartCount = 0;
       state.items = [];
     },
+    removeFromCart(state, action: PayloadAction<string>) {
+      const idMeal = action.payload;
+      const existingItem = state.items.find((item) => item.idMeal === idMeal);
+      if (existingItem) {
+        state.cartCount -= existingItem.quantity;
+        state.items = state.items.filter((item) => item.idMeal !== idMeal);
+      }
+    },
   },
 });
 
-export const { addToCart, clearCart } = cartSlice.actions;
+export const { addToCart, clearCart, removeFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

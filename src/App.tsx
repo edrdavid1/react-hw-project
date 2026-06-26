@@ -4,7 +4,7 @@ import HomePage from './components/HomePage';
 import MenuPage from './components/MenuPage';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
-import OrderPage from './components/OrderPage';
+import CartPage from './components/CartPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { startAuthListener } from './store/slices/authSlice';
 import { useAppDispatch } from './store/hooks';
@@ -26,10 +26,10 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route
-            path="/orders"
+            path="/cart"
             element={
               <ProtectedRoute>
-                <OrderPage />
+                <CartPage />
               </ProtectedRoute>
             }
           />
