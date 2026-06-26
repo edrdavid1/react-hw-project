@@ -23,7 +23,7 @@
   --secondary-text-color: #9AA6B2;
   --bg-color: #0B1220; /* dark background */
   --border-color: #1F2937;
-  --background-color: #071022;
+  --background-color: #0a0403
 }
 
 :root[data-theme='light'], [data-theme='light'] {

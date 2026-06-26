@@ -1,7 +1,7 @@
 .card {
   display: flex;
   gap: 16px;
-  background-color: #ffffff;
+  background-color: transparent;
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 16px;
@@ -61,6 +61,7 @@
   width: 52px;
   height: 36px;
   border: 1px solid var(--border-color);
+  background-color: transparent;
   border-radius: 6px;
   text-align: center;
   font-size: 14px;

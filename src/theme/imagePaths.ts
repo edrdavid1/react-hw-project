@@ -22,5 +22,5 @@ export const darkImages: ThemeImagePaths = {
   menuBackground: '/images/dark/menu-background-dark.png',
   logo: '/images/dark/Logo.svg',
   logoDark: '/images/dark/Logo.svg',
-  heroImage: '/images/dark/IMAGE-dark.svg',
+  heroImage: '/images/dark/IMAGE-dark.png',
 };
