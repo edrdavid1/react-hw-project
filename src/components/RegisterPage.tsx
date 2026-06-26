@@ -2,13 +2,15 @@ import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import { clearAuthError, loginUser } from '../store/slices/authSlice';
+import { clearAuthError, registerUser } from '../store/slices/authSlice';
 import styles from './LoginPage.module.css';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [localError, setLocalError] = useState<string | null>(null);
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -16,9 +18,15 @@ const LoginPage = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(clearAuthError());
+    setLocalError(null);
+
+    if (password !== confirmPassword) {
+      setLocalError('Passwords do not match.');
+      return;
+    }
 
     try {
-      await dispatch(loginUser({ email, password })).unwrap();
+      await dispatch(registerUser({ email, password })).unwrap();
       navigate('/orders');
     } catch {
       return;
@@ -30,12 +38,12 @@ const LoginPage = () => {
       <Header />
       <div className={styles.hero}>
         <div className="container">
-          <h1 className={styles['hero-title']}>Log in</h1>
+          <h1 className={styles['hero-title']}>Create account</h1>
         </div>
       </div>
       <main className={styles.main}>
         <div className={styles.card}>
-          {error && <p className={styles.error}>{error}</p>}
+          {(error || localError) && <p className={styles.error}>{error ?? localError}</p>}
 
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.field}>
@@ -65,9 +73,23 @@ const LoginPage = () => {
               />
             </div>
 
+            <div className={styles.field}>
+              <label htmlFor="confirmPassword" className={styles.label}>Confirm password</label>
+              <input
+                id="confirmPassword"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className={styles.input}
+                placeholder="••••••••••••••••••••"
+                required
+                minLength={6}
+              />
+            </div>
+
             <div className={styles.actions}>
               <button type="submit" className={styles.submit} disabled={loading}>
-                {loading ? 'Please wait…' : 'Submit'}
+                {loading ? 'Please wait…' : 'Create account'}
               </button>
               <button
                 type="button"
@@ -75,6 +97,8 @@ const LoginPage = () => {
                 onClick={() => {
                   setEmail('');
                   setPassword('');
+                  setConfirmPassword('');
+                  setLocalError(null);
                   dispatch(clearAuthError());
                 }}
               >
@@ -83,9 +107,9 @@ const LoginPage = () => {
             </div>
 
             <p className={styles.switchText}>
-              Don&apos;t have an account?{' '}
-              <Link to="/register" className={styles.switchLink}>
-                Create one
+              Already have an account?{' '}
+              <Link to="/login" className={styles.switchLink}>
+                Log in
               </Link>
             </p>
           </form>
@@ -96,4 +120,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

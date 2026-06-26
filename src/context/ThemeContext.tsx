@@ -1,18 +1,8 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { darkImages, lightImages } from '../theme/imagePaths';
-
-type Theme = 'light' | 'dark' | 'system';
-
-interface ThemeContextValue {
-  theme: Theme;
-  effectiveTheme: 'light' | 'dark';
-  setTheme: (theme: Theme) => void;
-  toggleTheme: () => void;
-}
+import { ThemeContext, type Theme, type ThemeContextValue } from './themeContext';
 
 const STORAGE_KEY = 'app_theme';
-
-const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 const getSystemPrefersDark = (): boolean => {
   if (typeof window === 'undefined') return false;
@@ -36,11 +26,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const handleChange = (event: MediaQueryListEvent) => setPrefersDark(event.matches);
     mq.addEventListener?.('change', handleChange);
     return () => {
-      try {
+      if (typeof mq.removeEventListener === 'function') {
         mq.removeEventListener('change', handleChange);
-      } catch {
-        // Safari fallback
-        // @ts-ignore
+      } else {
         mq.removeListener?.(handleChange);
       }
     };
@@ -81,12 +69,6 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       {children}
     </ThemeContext.Provider>
   );
-};
-
-export const useTheme = (): ThemeContextValue => {
-  const context = useContext(ThemeContext);
-  if (!context) throw new Error('useTheme must be used within ThemeProvider');
-  return context;
 };
 
 export default ThemeProvider;

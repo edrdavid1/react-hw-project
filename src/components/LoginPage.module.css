@@ -133,3 +133,20 @@
 .cancel:hover {
   background-color: var(--background-color);
 }
+
+.switchText {
+  margin-top: 8px;
+  text-align: center;
+  color: var(--secondary-text-color);
+  font-size: 14px;
+}
+
+.switchLink {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.switchLink:hover {
+  text-decoration: underline;
+}

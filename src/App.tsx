@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import HomePage from './components/HomePage';
 import MenuPage from './components/MenuPage';
 import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage';
 import OrderPage from './components/OrderPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { startAuthListener } from './store/slices/authSlice';
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route
             path="/orders"
             element={
