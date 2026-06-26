@@ -1,0 +1,142 @@
+.languageContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.languageButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1.5px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+  min-width: 110px;
+  font-family: inherit;
+}
+
+.languageButton:hover {
+  border-color: #ff6b35;
+  background: rgba(255, 107, 53, 0.05);
+}
+
+.languageButton:focus {
+  outline: none;
+  border-color: #ff6b35;
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.chevron {
+  width: 16px;
+  height: 16px;
+  margin-left: auto;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chevron::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.languageButton[aria-expanded="true"] .chevron::after {
+  transform: rotate(-135deg) translateY(-2px);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--bg-color, #ffffff);
+  border: 1.5px solid var(--border-color, #e0e0e0);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  min-width: 150px;
+  overflow: hidden;
+  animation: slideDown 0.2s ease;
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-color);
+  transition: background-color 0.15s ease, color 0.15s ease;
+  position: relative;
+  font-family: inherit;
+}
+
+.dropdownItem:hover {
+  background-color: rgba(255, 107, 53, 0.1);
+}
+
+.dropdownItem.active {
+  background-color: rgba(255, 107, 53, 0.15);
+  color: #ff6b35;
+  font-weight: 600;
+}
+
+.checkmark {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.dropdownItem.active .checkmark {
+  opacity: 1;
+}
+
+.checkmark::after {
+  content: '✓';
+  font-size: 14px;
+  font-weight: bold;
+  color: #ff6b35;
+}
+
+
+
+.itemLabel {
+  flex: 1;
+}
+
