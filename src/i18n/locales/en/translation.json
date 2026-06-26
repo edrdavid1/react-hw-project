@@ -1,0 +1,122 @@
+{
+  "header": {
+    "logoAlt": "Logo",
+    "nav": {
+      "home": "Home",
+      "menu": "Menu",
+      "company": "Company",
+      "login": "Login",
+      "orders": "Orders"
+    }
+  },
+  "login": {
+    "title": "Log in",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "placeholderEmail": "name@example.com",
+    "placeholderPassword": "••••••••••••••••••••",
+    "loading": "Please wait…",
+    "noAccount": "Don't have an account?",
+    "createOne": "Create one"
+  },
+  "theme": {
+    "switchToLight": "Switch to light theme",
+    "switchToDark": "Switch to dark theme",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "menu": {
+    "title": "Browse our menu",
+    "descriptionStart": "Use our menu to place an order online, or",
+    "phone": "phone",
+    "descriptionEnd": "our store to place a pickup order. Fast and fresh food.",
+    "loading": "Loading menu…",
+    "seeMore": "See more",
+    "categories": {
+      "dessert": "Dessert",
+      "beef": "Dinner",
+      "breakfast": "Breakfast"
+    }
+  },
+  "menuItem": {
+    "description": "Lorem ipsum is simply dummy text of the printing and typesetting industry.",
+    "quantityLabel": "Quantity",
+    "addToCart": "Add to cart"
+  },
+  "register": {
+    "title": "Create account",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "submit": "Create account",
+    "cancel": "Cancel",
+    "placeholderEmail": "name@example.com",
+    "placeholderPassword": "••••••••••••••••••••",
+    "loading": "Please wait…",
+    "alreadyHaveAccount": "Already have an account?",
+    "loginLink": "Log in",
+    "errors": {
+      "passwordMismatch": "Passwords do not match."
+    }
+  },
+  "orders": {
+    "title": "My Orders",
+    "loggedInAs": "Logged in as",
+    "itemsInCart": "Items in cart:",
+    "emptyCart": "Your cart is empty. Add dishes from menu to create an order.",
+    "quantity": "Quantity: {{count}}",
+    "logout": "Log Out"
+  },
+  "footer": {
+    "logoAlt": "Logo",
+    "brand": {
+      "description": "Takeaway & Delivery template for small - medium businesses."
+    },
+    "company": {
+      "heading": "COMPANY",
+      "home": "Home",
+      "order": "Order",
+      "faq": "FAQ",
+      "contact": "Contact"
+    },
+    "template": {
+      "heading": "TEMPLATE",
+      "styleGuide": "Style Guide",
+      "changelog": "Changelog",
+      "licence": "Licence",
+      "webflowUniversity": "Webflow University"
+    },
+    "flowbase": {
+      "heading": "FLOWBASE",
+      "moreCloneables": "More Cloneables",
+      "phone": "phone",
+      "phoneAlt": "Phone number"
+    },
+    "bottom": {
+      "builtBy": "Built by",
+      "flowbase": "Flowbase",
+      "poweredBy": "Powered by",
+      "webflow": "Webflow"
+    },
+    "social": {
+      "instagram": "Instagram",
+      "twitter": "Twitter",
+      "youtube": "YouTube"
+    }
+  },
+  "language": {
+    "selectLanguage": "Select language"
+  },
+  "hero": {
+    "titlePrefix": "Beautiful food & takeaway,",
+    "titleHighlight": "delivered",
+    "titleSuffix": "to your door.",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.",
+    "button": "Place an Order",
+    "trustpilot": "Trustpilot",
+    "ratingReviews": "{{rating}} out of 5 based on {{count}}+ reviews",
+    "imageAlt": "Delicious food"
+  }
+}

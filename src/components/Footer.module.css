@@ -1,7 +1,7 @@
 
 .footer {
   padding: 80px 0 40px;
-  background-image: url('/footer-backgroung.png');
+  background-image: var(--footer-background);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -82,7 +82,7 @@
 }
 
 .social-link {
-  background-color: white;
+  background-color: var(--bg-color);
   border: 1px solid var(--border-color);
   width: 40px;
   height: 40px;
