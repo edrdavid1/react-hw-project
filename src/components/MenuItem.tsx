@@ -8,7 +8,12 @@ interface MenuItemProps {
   onAddToCart: (quantity: number, selectedMeal: Meal) => void;
 }
 
-const getPrice = (idMeal: string): string => {
+const getPrice = (meal: Meal): string => {
+  if (typeof meal.price === 'number' && Number.isFinite(meal.price)) {
+    return meal.price.toFixed(2);
+  }
+
+  const { idMeal } = meal;
   const hash = Number.parseInt(idMeal.slice(-3), 10);
   return ((hash % 1200) / 100 + 5).toFixed(2);
 };
@@ -16,7 +21,7 @@ const getPrice = (idMeal: string): string => {
 const MenuItem = ({ meal, onAddToCart }: MenuItemProps) => {
   const { t } = useTranslation();
   const [quantity, setQuantity] = useState(1);
-  const price = getPrice(meal.idMeal);
+  const price = getPrice(meal);
 
   const handleAdd = () => {
     onAddToCart(quantity, meal);

@@ -39,7 +39,7 @@ const Hero = () => {
           <p className={styles['hero-description']}>
             {t('hero.description')}
           </p>
-          <Link to="/orders" className={styles['cta-button']}>{t('hero.button')}</Link>
+          <Link to="/menu" className={styles['cta-button']}>{t('hero.button')}</Link>
           <div className={styles.trustpilot}>
             <div className={styles['trustpilot-header']}>
               <StarRating rating={RATING} />
