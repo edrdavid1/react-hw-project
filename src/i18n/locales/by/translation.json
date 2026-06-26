@@ -1,0 +1,127 @@
+{
+  "header": {
+    "logoAlt": "Лагатып",
+    "nav": {
+      "home": "Галоўная",
+      "menu": "Меню",
+      "company": "Кампанія",
+      "login": "Увайсці",
+      "cart": "Кошык"
+    }
+  },
+  "hero": {
+    "titlePrefix": "Смачная ежа і з сабой,",
+    "titleHighlight": "дастаўленая",
+    "titleSuffix": "да дзвярэй.",
+    "description": "Lorem Ipsum — гэта тэкст-«замяняльнік» у друку і наборы тэксту. Lorem Ipsum выкарыстоўваецца з 1500-х гадоў.",
+    "button": "Зрабіць замову",
+    "trustpilot": "Trustpilot",
+    "ratingReviews": "{{rating}} з 5 на аснове {{count}}+ водгукаў",
+    "imageAlt": "Смачная ежа"
+  },
+  "login": {
+    "title": "Увайсці",
+    "email": "Электронная пошта",
+    "password": "Пароль",
+    "submit": "Адправіць",
+    "cancel": "Адмена",
+    "placeholderEmail": "name@example.com",
+    "placeholderPassword": "••••••••••••••••••••",
+    "loading": "Калі ласка, пачакайце…",
+    "noAccount": "Няма ўліковага запісу?",
+    "createOne": "Стварыць"
+  },
+  "theme": {
+    "switchToLight": "Пераключыць на светлую тэму",
+    "switchToDark": "Пераключыць на цёмную тэму",
+    "light": "Светлая",
+    "dark": "Цёмная"
+  },
+  "menu": {
+    "title": "Зазірніце ў нашае меню",
+    "descriptionStart": "Выкарыстоўвайце нашае меню, каб замовіць онлайн, або",
+    "phone": "патэлефануйце",
+    "descriptionEnd": "у наш магазін, каб аформіць замову на вынас. Хуткая і свежая ежа.",
+    "loading": "Загрузка меню…",
+    "seeMore": "Паказаць яшчэ",
+    "categories": {
+      "dessert": "Дэсерт",
+      "beef": "Вячэра",
+      "breakfast": "Сняданак"
+    }
+  },
+  "menuItem": {
+    "description": "Lorem ipsum — гэта тэкст-«запаўняльнік» у друку і наборы тэксту.",
+    "quantityLabel": "Колькасць",
+    "addToCart": "Дадаць у кошык"
+  },
+  "register": {
+    "title": "Стварыць уліковы запіс",
+    "email": "Электронная пошта",
+    "password": "Пароль",
+    "confirmPassword": "Пацвердзіце пароль",
+    "submit": "Стварыць уліковы запіс",
+    "cancel": "Адмена",
+    "placeholderEmail": "name@example.com",
+    "placeholderPassword": "••••••••••••••••••••",
+    "loading": "Калі ласка, пачакайце…",
+    "alreadyHaveAccount": "Ужо ёсць уліковы запіс?",
+    "loginLink": "Увайсці",
+    "errors": {
+      "passwordMismatch": "Паролі не супадаюць."
+    }
+  },
+  "cart": {
+    "title": "Кошык",
+    "loggedInAs": "Увайшлі як",
+    "itemsInCart": "Тавары ў кошыку:",
+    "emptyCart": "Ваш кошык пусты. Дадайце стравы з меню, каб стварыць замову.",
+    "quantity": "Колькасць: {{count}}",
+    "price": "Цана: $ {{price}} USD",
+    "total": "Выніковая сума: $ {{total}} USD",
+    "delete": "Выдаліць",
+    "checkout": "Аформіць замову",
+    "checkoutAlert": "Афармленне замовы ў дадзены момант недаступна. Дзякуй за вашу цікавасць!",
+    "logout": "Выйсці"
+  },
+  "footer": {
+    "logoAlt": "Лагатып",
+    "brand": {
+      "description": "Шаблон Takeaway & Delivery для малога і сярэдняга бізнесу."
+    },
+    "company": {
+      "heading": "КАМПАНІЯ",
+      "home": "Галоўная",
+      "order": "Замова",
+      "faq": "FAQ",
+      "contact": "Кантакты"
+    },
+    "template": {
+      "heading": "ШАБЛОН",
+      "styleGuide": "Кіраўніцтва па стылі",
+      "changelog": "Журнал змяненняў",
+      "licence": "Ліцэнзія",
+      "webflowUniversity": "Webflow University"
+    },
+    "flowbase": {
+      "heading": "FLOWBASE",
+      "moreCloneables": "Больш кланіруемых",
+      "phone": "тэлефон",
+      "phoneAlt": "Нумар тэлефона"
+    },
+    "bottom": {
+      "builtBy": "Створана",
+      "flowbase": "Flowbase",
+      "poweredBy": "Працуе на",
+      "webflow": "Webflow"
+    },
+    "social": {
+      "instagram": "Instagram",
+      "twitter": "Twitter",
+      "youtube": "YouTube"
+    }
+  },
+  "language": {
+    "selectLanguage": "Выберыце мову"
+  }
+}

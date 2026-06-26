@@ -1,12 +1,11 @@
 .hero {
-  background-image: url('/menu-background.png');
+  background-image: var(--menu-background);
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
   padding: 60px 0 40px;
   text-align: center;
 }
-
 .title {
   font-size: 36px;
   font-weight: 700;

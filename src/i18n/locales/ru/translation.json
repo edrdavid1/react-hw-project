@@ -1,0 +1,135 @@
+{
+  "header": {
+    "logoAlt": "Логотип",
+    "nav": {
+      "home": "Главная",
+      "menu": "Меню",
+      "company": "О компании",
+      "login": "Войти",
+      "cart": "Корзина"
+    }
+  },
+  "hero": {
+    "titlePrefix": "Прекрасная еда и на вынос,",
+    "titleHighlight": "доставленная",
+    "description": "Lorem Ipsum — это текст-«заменитель» в печати и наборе текста. Lorem Ipsum используется с 1500-х годов.",
+    "button": "Сделать заказ",
+    "trustpilot": "Trustpilot",
+    "ratingReviews": "{{rating}} из 5 на основе {{count}}+ отзывов"
+  },
+  "login": {
+    "title": "Войти",
+    "email": "Почта",
+    "password": "Пароль",
+    "submit": "Отправить",
+    "cancel": "Отмена",
+    "placeholderEmail": "name@example.com",
+    "placeholderPassword": "••••••••••••••••••••",
+    "loading": "Пожалуйста, подождите…",
+    "noAccount": "Нет аккаунта?",
+    "createOne": "Создать"
+  },
+  "theme": {
+    "switchToLight": "Переключить на светлую тему",
+    "switchToDark": "Переключить на тёмную тему",
+    "light": "Светлая",
+    "dark": "Тёмная"
+  },
+  "menu": {
+    "title": "Просмотрите наше меню",
+    "descriptionStart": "Используйте наше меню, чтобы оформить заказ онлайн или",
+    "phone": "позвоните",
+    "descriptionEnd": "в наш магазин, чтобы оформить заказ на вынос. Быстрая и свежая еда.",
+    "loading": "Загрузка меню…",
+    "seeMore": "Показать ещё",
+    "categories": {
+      "dessert": "Десерт",
+      "beef": "Ужин",
+      "breakfast": "Завтрак"
+    }
+  },
+  "menuItem": {
+    "description": "Lorem ipsum — это текст-«заполнитель» в печати и наборе текста.",
+    "quantityLabel": "Количество",
+    "addToCart": "Добавить в корзину"
+  },
+  "register": {
+    "title": "Создать аккаунт",
+    "email": "Почта",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "submit": "Создать аккаунт",
+    "cancel": "Отмена",
+    "placeholderEmail": "name@example.com",
+    "placeholderPassword": "••••••••••••••••••••",
+    "loading": "Пожалуйста, подождите…",
+    "alreadyHaveAccount": "Уже есть аккаунт?",
+    "loginLink": "Войти",
+    "errors": {
+      "passwordMismatch": "Пароли не совпадают."
+    }
+  },
+  "cart": {
+    "title": "Корзина",
+    "loggedInAs": "Вошли как",
+    "itemsInCart": "Товаров в корзине:",
+    "emptyCart": "Ваша корзина пуста. Добавьте блюда из меню, чтобы сформировать заказ.",
+    "quantity": "Количество: {{count}}",
+    "price": "Цена: $ {{price}} USD",
+    "total": "Итого: $ {{total}} USD",
+    "delete": "Удалить",
+    "checkout": "Оформить заказ",
+    "checkoutAlert": "Оформление заказа в данный момент недоступно. Спасибо за ваш интерес!",
+    "logout": "Выйти"
+  },
+  "footer": {
+    "logoAlt": "Логотип",
+    "brand": {
+      "description": "Шаблон Takeaway & Delivery для малого и среднего бизнеса."
+    },
+    "company": {
+      "heading": "КОМПАНИЯ",
+      "home": "Главная",
+      "order": "Заказ",
+      "faq": "Вопросы",
+      "contact": "Контакты"
+    },
+    "template": {
+      "heading": "ШАБЛОН",
+      "styleGuide": "Руководство по стилю",
+      "changelog": "Журнал изменений",
+      "licence": "Лицензия",
+      "webflowUniversity": "Webflow University"
+    },
+    "flowbase": {
+      "heading": "FLOWBASE",
+      "moreCloneables": "Ещё клонируемые",
+      "phone": "телефон",
+      "phoneAlt": "Номер телефона"
+    },
+    "bottom": {
+      "builtBy": "Создано",
+      "flowbase": "Flowbase",
+      "poweredBy": "Работает на",
+      "webflow": "Webflow"
+    },
+    "social": {
+      "instagram": "Instagram",
+      "twitter": "Twitter",
+      "youtube": "YouTube"
+    }
+  },
+  "language": {
+    "selectLanguage": "Выберите язык"
+  },
+  "hero": {
+    "titlePrefix": "Прекрасная еда и на вынос,",
+    "titleHighlight": "доставленная",
+    "titleSuffix": "к вашей двери.",
+    "description": "Lorem Ipsum — это текст-«заменитель» в печати и наборе текста. Lorem Ipsum используется с 1500-х годов.",
+    "button": "Сделать заказ",
+    "trustpilot": "Trustpilot",
+    "ratingReviews": "{{rating}} из 5 на основе {{count}}+ отзывов",
+    "imageAlt": "Вкусная еда"
+  }
+}
