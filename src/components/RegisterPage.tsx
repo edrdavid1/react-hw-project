@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Header from './Header';
 import Footer from './Footer';
 import { clearAuthError, registerUser } from '../store/slices/authSlice';
@@ -14,6 +15,7 @@ const RegisterPage = () => {
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const RegisterPage = () => {
     setLocalError(null);
 
     if (password !== confirmPassword) {
-      setLocalError('Passwords do not match.');
+      setLocalError(t('register.errors.passwordMismatch'));
       return;
     }
 
@@ -38,7 +40,7 @@ const RegisterPage = () => {
       <Header />
       <div className={styles.hero}>
         <div className="container">
-          <h1 className={styles['hero-title']}>Create account</h1>
+          <h1 className={styles['hero-title']}>{t('register.title')}</h1>
         </div>
       </div>
       <main className={styles.main}>
@@ -47,41 +49,41 @@ const RegisterPage = () => {
 
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.field}>
-              <label htmlFor="email" className={styles.label}>Email</label>
+              <label htmlFor="email" className={styles.label}>{t('register.email')}</label>
               <input
                 id="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className={styles.input}
-                placeholder="name@example.com"
+                placeholder={t('register.placeholderEmail')}
                 required
               />
             </div>
 
             <div className={styles.field}>
-              <label htmlFor="password" className={styles.label}>Password</label>
+              <label htmlFor="password" className={styles.label}>{t('register.password')}</label>
               <input
                 id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className={styles.input}
-                placeholder="••••••••••••••••••••"
+                placeholder={t('register.placeholderPassword')}
                 required
                 minLength={6}
               />
             </div>
 
             <div className={styles.field}>
-              <label htmlFor="confirmPassword" className={styles.label}>Confirm password</label>
+              <label htmlFor="confirmPassword" className={styles.label}>{t('register.confirmPassword')}</label>
               <input
                 id="confirmPassword"
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 className={styles.input}
-                placeholder="••••••••••••••••••••"
+                placeholder={t('register.placeholderPassword')}
                 required
                 minLength={6}
               />
@@ -89,7 +91,7 @@ const RegisterPage = () => {
 
             <div className={styles.actions}>
               <button type="submit" className={styles.submit} disabled={loading}>
-                {loading ? 'Please wait…' : 'Create account'}
+                {loading ? t('register.loading') : t('register.submit')}
               </button>
               <button
                 type="button"
@@ -102,14 +104,14 @@ const RegisterPage = () => {
                   dispatch(clearAuthError());
                 }}
               >
-                Cancel
+                {t('register.cancel')}
               </button>
             </div>
 
             <p className={styles.switchText}>
-              Already have an account?{' '}
+              {t('register.alreadyHaveAccount')}{' '}
               <Link to="/login" className={styles.switchLink}>
-                Log in
+                {t('register.loginLink')}
               </Link>
             </p>
           </form>

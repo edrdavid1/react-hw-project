@@ -1,42 +1,46 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styles from './Header.module.css';
 import clsx from 'clsx';
 import { useAppSelector } from '../store/hooks';
 import { useTheme } from '../context/useTheme';
 import ThemedImage from './ThemedImage';
+import LanguageDropdown from './LanguageDropdown';
 
 const Header = () => {
   const cartCount = useAppSelector((state) => state.cart.cartCount);
   const user = useAppSelector((state) => state.auth.user);
   const location = useLocation();
+  const { t } = useTranslation();
 
   return (
     <header className={styles.header}>
       <div className={clsx('container', styles['header-container'])}>
         <Link to="/" className={styles.logo}>
-          <ThemedImage name="Logo.svg" alt="Logo" className={styles.logoImage} />
+          <ThemedImage name="Logo.svg" alt={t('header.logoAlt')} className={styles.logoImage} />
         </Link>
         <nav className={styles.nav}>
           <ul className={styles['nav-list']}>
             <li className={styles['nav-item']}>
-              <Link to="/" className={clsx(styles['nav-link'], { [styles.active]: location.pathname === '/' })}>Home</Link>
+              <Link to="/" className={clsx(styles['nav-link'], { [styles.active]: location.pathname === '/' })}>{t('header.nav.home')}</Link>
             </li>
             <li className={styles['nav-item']}>
-              <Link to="/menu" className={clsx(styles['nav-link'], { [styles.active]: location.pathname === '/menu' })}>Menu</Link>
+              <Link to="/menu" className={clsx(styles['nav-link'], { [styles.active]: location.pathname === '/menu' })}>{t('header.nav.menu')}</Link>
             </li>
             <li className={styles['nav-item']}>
-              <span className={styles['nav-link']}>Company</span>
+              <span className={styles['nav-link']}>{t('header.nav.company')}</span>
             </li>
             <li className={styles['nav-item']}>
               {user ? (
-                <Link to="/orders" className={clsx(styles['nav-link'], { [styles.active]: location.pathname === '/orders' })}>Orders</Link>
+                <Link to="/orders" className={clsx(styles['nav-link'], { [styles.active]: location.pathname === '/orders' })}>{t('header.nav.orders')}</Link>
               ) : (
-                <Link to="/login" className={clsx(styles['nav-link'], { [styles.active]: location.pathname === '/login' })}>Login</Link>
+                <Link to="/login" className={clsx(styles['nav-link'], { [styles.active]: location.pathname === '/login' })}>{t('header.nav.login')}</Link>
               )}
             </li>
           </ul>
         </nav>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div className={styles['header-controls']}>
+          <LanguageDropdown />
           <button className={styles['cart-button']}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -53,14 +57,15 @@ const Header = () => {
 };
 
 const ThemeToggle = () => {
+  const { t } = useTranslation();
   const { effectiveTheme, toggleTheme } = useTheme();
   const isDark = effectiveTheme === 'dark';
   return (
     <button
       className={styles['theme-toggle']}
       onClick={toggleTheme}
-      aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-      title={isDark ? 'Light' : 'Dark'}
+      aria-label={isDark ? t('theme.switchToLight') : t('theme.switchToDark')}
+      title={isDark ? t('theme.light') : t('theme.dark')}
     >
       {isDark ? (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>

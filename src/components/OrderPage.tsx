@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Header from './Header';
 import Footer from './Footer';
 import { logoutUser } from '../store/slices/authSlice';
@@ -16,24 +17,26 @@ const OrderPage = () => {
     navigate('/login');
   };
 
+  const { t } = useTranslation();
+
   return (
     <div className={styles.page}>
       <Header />
       <main className={styles.main}>
-        <h1 className={styles.title}>My Orders</h1>
-        <p className={styles.subtitle}>Logged in as <strong>{user?.email}</strong></p>
-        <p className={styles.subtitle}>Items in cart: <strong>{cartCount}</strong></p>
+        <h1 className={styles.title}>{t('orders.title')}</h1>
+        <p className={styles.subtitle}>{t('orders.loggedInAs')} <strong>{user?.email}</strong></p>
+        <p className={styles.subtitle}>{t('orders.itemsInCart')} <strong>{cartCount}</strong></p>
 
         <section className={styles['orders-list']}>
           {items.length === 0 ? (
-            <p className={styles['empty-orders']}>Your cart is empty. Add dishes from menu to create an order.</p>
+            <p className={styles['empty-orders']}>{t('orders.emptyCart')}</p>
           ) : (
             items.map((item) => (
               <article key={item.idMeal} className={styles['order-item']}>
                 <img src={item.strMealThumb} alt={item.strMeal} className={styles.thumbnail} />
                 <div>
                   <h3 className={styles['item-title']}>{item.strMeal}</h3>
-                  <p className={styles['item-qty']}>Quantity: {item.quantity}</p>
+                  <p className={styles['item-qty']}>{t('orders.quantity', { count: item.quantity })}</p>
                 </div>
               </article>
             ))
@@ -41,7 +44,7 @@ const OrderPage = () => {
         </section>
 
         <button className={styles['logout-btn']} onClick={handleLogout}>
-          Log Out
+          {t('orders.logout')}
         </button>
       </main>
       <Footer />

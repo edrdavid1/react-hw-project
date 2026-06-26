@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Header from './Header';
 import Footer from './Footer';
 import { clearAuthError, loginUser } from '../store/slices/authSlice';
@@ -12,6 +13,7 @@ const LoginPage = () => {
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,7 +32,7 @@ const LoginPage = () => {
       <Header />
       <div className={styles.hero}>
         <div className="container">
-          <h1 className={styles['hero-title']}>Log in</h1>
+          <h1 className={styles['hero-title']}>{t('login.title')}</h1>
         </div>
       </div>
       <main className={styles.main}>
@@ -39,27 +41,27 @@ const LoginPage = () => {
 
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.field}>
-              <label htmlFor="email" className={styles.label}>Email</label>
+              <label htmlFor="email" className={styles.label}>{t('login.email')}</label>
               <input
                 id="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className={styles.input}
-                placeholder="name@example.com"
+                placeholder={t('login.placeholderEmail')}
                 required
               />
             </div>
 
             <div className={styles.field}>
-              <label htmlFor="password" className={styles.label}>Password</label>
+              <label htmlFor="password" className={styles.label}>{t('login.password')}</label>
               <input
                 id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className={styles.input}
-                placeholder="••••••••••••••••••••"
+                placeholder={t('login.placeholderPassword')}
                 required
                 minLength={6}
               />
@@ -67,7 +69,7 @@ const LoginPage = () => {
 
             <div className={styles.actions}>
               <button type="submit" className={styles.submit} disabled={loading}>
-                {loading ? 'Please wait…' : 'Submit'}
+                {loading ? t('login.loading') : t('login.submit')}
               </button>
               <button
                 type="button"
@@ -78,14 +80,14 @@ const LoginPage = () => {
                   dispatch(clearAuthError());
                 }}
               >
-                Cancel
+                {t('login.cancel')}
               </button>
             </div>
 
             <p className={styles.switchText}>
-              Don&apos;t have an account?{' '}
+              {t('login.noAccount')} {' '}
               <Link to="/register" className={styles.switchLink}>
-                Create one
+                {t('login.createOne')}
               </Link>
             </p>
           </form>

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import Header from './Header';
 import Footer from './Footer';
 import MenuItem from './MenuItem';
@@ -27,11 +28,12 @@ const MenuPage = () => {
   };
 
   const handleCategoryClick = (category: Category) => {
-    if (category.label !== activeCategory.label) {
+    if (category.apiCategory !== activeCategory.apiCategory) {
       dispatch(setActiveCategory(category));
     }
   };
 
+  const { t } = useTranslation();
   const visibleMeals = meals.slice(0, visibleCount);
   const hasMore = visibleCount < meals.length;
 
@@ -41,11 +43,11 @@ const MenuPage = () => {
       <main>
         <div className={styles.hero}>
           <div className="container">
-            <h1 className={styles.title}>Browse our menu</h1>
+            <h1 className={styles.title}>{t('menu.title')}</h1>
             <p className={styles.subtitle}>
-              Use our menu to place an order online, or{' '}
-              <span className={styles.highlight}>phone</span> our store
-              to place a pickup order. Fast and fresh food.
+              {t('menu.descriptionStart')}{' '}
+              <span className={styles.highlight}>{t('menu.phone')}</span>{' '}
+              {t('menu.descriptionEnd')}
             </p>
           </div>
         </div>
@@ -55,17 +57,17 @@ const MenuPage = () => {
             <div className={styles.categories}>
               {CATEGORIES.map((category) => (
                 <button
-                  key={category.label}
-                  className={clsx(styles['category-btn'], { [styles.active]: activeCategory.label === category.label })}
+                  key={category.apiCategory}
+                  className={clsx(styles['category-btn'], { [styles.active]: activeCategory.apiCategory === category.apiCategory })}
                   onClick={() => handleCategoryClick(category)}
                 >
-                  {category.label}
+                  {t(`menu.categories.${category.apiCategory.toLowerCase()}`)}
                 </button>
               ))}
             </div>
 
             {loading ? (
-              <p className={styles.loading}>Loading menu…</p>
+              <p className={styles.loading}>{t('menu.loading')}</p>
             ) : (
               <>
                 <div className={styles.grid}>
@@ -83,7 +85,7 @@ const MenuPage = () => {
                 {hasMore && (
                   <div className={styles['see-more-container']}>
                     <button className={styles['see-more-btn']} onClick={handleSeeMore}>
-                      See more
+                      {t('menu.seeMore')}
                     </button>
                   </div>
                 )}

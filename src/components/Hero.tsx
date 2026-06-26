@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styles from './Hero.module.css';
 import clsx from 'clsx';
 import ThemedImage from './ThemedImage';
@@ -26,32 +27,33 @@ const StarRating = ({ rating }: StarRatingProps) => {
 };
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <section className={styles.hero}>
       <div className={clsx('container', styles['hero-container'])}>
         <div className={styles['hero-content']}>
           <h1 className={styles['hero-title']}>
-            Beautiful food & takeaway, <span className={styles.highlight}>delivered</span> to your door.
+            {t('hero.titlePrefix')} <span className={styles.highlight}>{t('hero.titleHighlight')}</span> {t('hero.titleSuffix')}
           </h1>
           <p className={styles['hero-description']}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500.
+            {t('hero.description')}
           </p>
-          <Link to="/orders" className={styles['cta-button']}>Place an Order</Link>
+          <Link to="/orders" className={styles['cta-button']}>{t('hero.button')}</Link>
           <div className={styles.trustpilot}>
             <div className={styles['trustpilot-header']}>
               <StarRating rating={RATING} />
-              <span className={styles['trustpilot-text']}>Trustpilot</span>
+              <span className={styles['trustpilot-text']}>{t('hero.trustpilot')}</span>
             </div>
             <p className={styles['trustpilot-rating']}>
-              <span className={styles['rating-score']}>{RATING} out of 5</span> based on 2000+ reviews
+              <span className={styles['rating-score']}>{t('hero.ratingReviews', { rating: RATING, count: 2000 })}</span>
             </p>
           </div>
         </div>
         <div className={styles['hero-image-container']}>
           <ThemedImage
             name="IMAGE.png"
-            alt="Delicious food"
+            alt={t('hero.imageAlt')}
             className={styles['hero-main-image']}
           />
           <div className={styles['floating-icons']}>
