@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import HomePage from './components/HomePage';
 import MenuPage from './components/MenuPage';
 import LoginPage from './components/LoginPage';
-import OrderPage from './components/OrderPage';
+import OrderPage from './components/OrderPage.jsx';
 import ProtectedRoute from './components/ProtectedRoute';
 import { startAuthListener } from './store/slices/authSlice';
 
