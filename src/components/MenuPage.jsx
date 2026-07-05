@@ -1,18 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from './Header';
 import Footer from './Footer';
 import MenuItem from './MenuItem';
 import { useCart } from '../context/CartContext';
 import useFetch from '../hooks/useFetch';
 import styles from './MenuPage.module.css';
-
-const ITEMS_PER_PAGE = 6;
-
-const CATEGORIES = [
-  { label: 'Dessert', apiCategory: 'Dessert' },
-  { label: 'Dinner', apiCategory: 'Beef' },
-  { label: 'Breakfast', apiCategory: 'Breakfast' },
-];
 
 const MenuPage = () => {
   const [meals, setMeals] = useState([]);
@@ -34,12 +27,12 @@ const MenuPage = () => {
   }, [activeCategory]);
 
   const handleSeeMore = () => {
-    setVisibleCount(prev => prev + ITEMS_PER_PAGE);
+    dispatch(increaseVisibleCount());
   };
 
   const handleCategoryClick = (category) => {
     if (category.label !== activeCategory.label) {
-      setActiveCategory(category);
+      dispatch(setActiveCategory(category));
     }
   };
 
@@ -81,7 +74,13 @@ const MenuPage = () => {
               <>
                 <div className={styles.grid}>
                   {visibleMeals.map(meal => (
-                    <MenuItem key={meal.idMeal} meal={meal} onAddToCart={addToCart} />
+                    <MenuItem
+                      key={meal.idMeal}
+                      meal={meal}
+                      onAddToCart={(quantity, selectedMeal) => {
+                        dispatch(addToCart({ meal: selectedMeal, quantity }));
+                      }}
+                    />
                   ))}
                 </div>
 

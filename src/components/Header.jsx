@@ -1,10 +1,11 @@
 
 import { Link, useLocation } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
+import { useSelector } from 'react-redux';
 import styles from './Header.module.css';
 
 const Header = () => {
-  const { cartCount } = useCart();
+  const cartCount = useSelector((state) => state.cart.cartCount);
+  const user = useSelector((state) => state.auth.user);
   const location = useLocation();
 
   return (
@@ -25,7 +26,11 @@ const Header = () => {
               <span className={styles['nav-link']}>Company</span>
             </li>
             <li className={styles['nav-item']}>
-              <span className={styles['nav-link']}>Login</span>
+              {user ? (
+                <Link to="/orders" className={`${styles['nav-link']} ${location.pathname === '/orders' ? styles.active : ''}`}>Orders</Link>
+              ) : (
+                <Link to="/login" className={`${styles['nav-link']} ${location.pathname === '/login' ? styles.active : ''}`}>Login</Link>
+              )}
             </li>
           </ul>
         </nav>

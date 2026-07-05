@@ -1,5 +1,6 @@
 
 import styles from './Hero.module.css';
+import { Link } from 'react-router-dom';
 
 const RATING = 4.8;
 const MAX_STARS = 5;
