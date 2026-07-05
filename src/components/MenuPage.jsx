@@ -3,22 +3,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from './Header';
 import Footer from './Footer';
 import MenuItem from './MenuItem';
-import { addToCart } from '../store/slices/cartSlice';
-import {
-  CATEGORIES,
-  fetchMealsByCategory,
-  increaseVisibleCount,
-  setActiveCategory,
-} from '../store/slices/menuSlice';
+import { useCart } from '../context/CartContext';
+import useFetch from '../hooks/useFetch';
 import styles from './MenuPage.module.css';
 
 const MenuPage = () => {
-  const dispatch = useDispatch();
-  const { meals, visibleCount, activeCategory, loading } = useSelector((state) => state.menu);
+  const [meals, setMeals] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+  const [activeCategory, setActiveCategory] = useState(CATEGORIES[0]);
+  const { addToCart } = useCart();
+  const { fetchData, loading } = useFetch();
 
   useEffect(() => {
-    dispatch(fetchMealsByCategory(activeCategory.apiCategory));
-  }, [dispatch, activeCategory]);
+    const loadMeals = async () => {
+      setVisibleCount(ITEMS_PER_PAGE);
+      const { data } = await fetchData(
+        `https://www.themealdb.com/api/json/v1/1/filter.php?c=${activeCategory.apiCategory}`
+      );
+      setMeals(data?.meals || []);
+    };
+
+    loadMeals();
+  }, [activeCategory]);
 
   const handleSeeMore = () => {
     dispatch(increaseVisibleCount());
